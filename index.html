@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>On-Demand Salon Services</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Custom styles for layout */
+        .hero-section {
+            background-image: url('Salon4.jpg'); /* Replace with actual image */
+            background-size: cover;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;  
+        }
+
+     .stylist-card {
+      margin-bottom: 20px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 15px;
+    }
+    .stylist-card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+
+   }
+
+
+   .hero-section h1 {
+            font-size: 4rem;
+            font-weight: bold;
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.4);
+        }
+
+        .hero-section p {
+            font-size: 1.6rem;
+            margin: 20px 0;
+        }
+
+        .hero-section a {
+            margin: 10px;
+        }
+
+        .features-section,
+        .services-section,
+        .testimonial-section,
+        .portfolio-section,
+        .pricing-section,
+        .faq-section,
+        .onboarding-section,
+        .blog-section {
+            padding: 4rem 0;
+        }
+
+        .features-section h2,
+        .services-section h2,
+        .testimonial-section h2,
+        .pricing-section h2,
+        .faq-section h2,
+        .onboarding-section h2,
+        .blog-section h2 {
+            font-size: 2.5rem;
+            font-family: 'Playfair Display', serif;
+            color: #7b4d77;
+            margin-bottom: 2rem;
+        }
+
+        .feature-card,
+        .service-card,
+        .testimonial-card,
+        .pricing-card,
+        .onboarding-card,
+        .blog-card {
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            background-color: #fff;
+            color: #333;
+        }
+
+        .feature-card:hover,
+        .service-card:hover,
+        .testimonial-card:hover,
+        .pricing-card:hover,
+        .onboarding-card:hover,
+        .blog-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .feature-card h3,
+        .service-card h4,
+        .pricing-card h3,
+        .onboarding-card h3 {
+            font-size: 1.8rem;
+            margin-top: 1.2rem;
+            font-weight: bold;
+        }
+
+        .pricing-card ul,
+        .onboarding-card p {
+            font-size: 1.1rem;
+            color: #7b4d77;
+        }
+
+        .pricing-card p {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #4a4a4a;
+        }
+
+        .services-section .service-card {
+            background-color: #f9f9f9;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-primary,
+        .btn-secondary,
+        .btn-outline-light {
+            border-radius: 50px;
+            font-size: 1.1rem;
+            padding: 12px 30px;
+            text-transform: uppercase;
+        }
+
+        .btn-primary {
+            background-color: #7b4d77;
+            border: none;
+        }
+
+        .btn-primary:hover {
+            background-color: #5a3b56;
+        }
+
+        .btn-secondary {
+            background-color: #f8f9fa;
+            border: none;
+            color: #7b4d77;
+        }
+
+        .btn-secondary:hover {
+            background-color: #e0e0e0;
+        }
+
+        .testimonial-card,
+        .portfolio-item,
+        .faq-item {
+            background-color: #fafafa;
+        }
+
+        footer {
+            padding: 2rem 0;
+            background-color: #333;
+            color: white;
+            text-align: center;
+        }
+
+        footer p {
+            font-size: 1rem;
+            margin: 0;
+        }
+
+        .portfolio-item img {
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .faq-item {
+            margin-bottom: 1.5rem;
+        }
+
+        .faq-item h5 {
+            font-size: 1.2rem;
+            font-weight: 500;
+            color: #7b4d77;
+        }
+
+        .faq-item p {
+            color: #555;
+        }
+
+        .pricing-section .pricing-card {
+            background-color: #f2f2f2;
+            border: none;
+        }
+
+        .pricing-section .pricing-card ul {
+            padding-left: 20px;
+            text-align: left;
+        }
+
+        .pricing-section .pricing-card a {
+            margin-top: 15px;
+            display: inline-block;
+            font-size: 1.1rem;
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container">
+            <h1>Book Top Stylists Anytime, Anywhere</h1>
+            <p>Hair, nails, makeup, and more at your convenience.</p>
+            <button class="btn btn-light btn-lg" data-bs-toggle="modal" data-bs-target="#signupModalClient">Sign Up as Client</button>
+            <button class="btn btn-outline-light btn-lg" data-bs-toggle="modal" data-bs-target="#signupModalStylist">Sign Up as Stylist</button>
+        </div>
+    </section>
+
+    <!-- Service Search Section -->
+   <div class="container my-5">
+    <h2>Find Nearby Stylists</h2>
+    <p>Enter your location or enable GPS to find available stylists near you.</p>
+
+    <!-- Location Input -->
+    <div class="row mb-4">
+      <div class="col-md-8">
+        <input type="text" class="form-control" id="locationInput" placeholder="Enter your location">
+      </div>
+      <div class="col-md-4">
+        <button class="btn btn-secondary w-100" id="findStylistsBtn">Find Stylists</button>
+      </div>
+    </div>
+    
+    <!-- GPS Location Button -->
+    <div class="row mb-4">
+      <div class="col-md-12">
+        <button class="btn btn-info" id="enableGpsBtn">Use My Location</button>
+      </div>
+    </div>
+
+    <!-- Stylist Listings -->
+    <h5>Available Stylists</h5>
+    <div class="row" id="stylistList">
+      <!-- Stylist Card 1 -->
+      <div class="col-md-4">
+        <div class="stylist-card">
+          <img src="too.jpg" alt="Stylist 1">
+          <h5 class="card-title">kemi</h5>
+          <p><strong>Specialties:</strong> Haircut, Coloring</p>
+          <p><strong>Distance:</strong> 1.5 miles away</p>
+          <a href="profile.html" class="btn btn-primary">View Profile</a>
+        </div>
+      </div>
+
+      <!-- Stylist Card 2 -->
+      <div class="col-md-4">
+        <div class="stylist-card">
+          <img src="nail.jpg" alt="Stylist 2">
+          <h5 class="card-title">flavour</h5>
+          <p><strong>Specialties:</strong> Makeup, Manicure</p>
+          <p><strong>Distance:</strong> 2.0 miles away</p>
+          <a href="#" class="btn btn-primary">View Profile</a>
+        </div>
+      </div>
+
+      <!-- Stylist Card 3 -->
+      <div class="col-md-4">
+        <div class="stylist-card">
+          <img src="mens2.jpg" alt="Stylist 3">
+          <h5 class="card-title">festus mbah</h5>
+          <p><strong>Specialties:</strong> Hair Styling, Hair Treatment</p>
+          <p><strong>Distance:</strong> 3.5 miles away</p>
+          <a href="#" class="btn btn-primary">View Profile</a>
+        </div>
+      </div>
+      
+      <!-- More stylist cards can be added here... -->
+
+      <div class="col-md-4">
+        <div class="stylist-card">
+          <img src="treat.jpg" alt="Stylist 3">
+          <h5 class="card-title">festus mbah</h5>
+          <p><strong>Specialties:</strong> Hair Styling, Hair Treatment</p>
+          <p><strong>Distance:</strong> 3.5 miles away</p>
+          <a href="#" class="btn btn-primary">View Profile</a>
+        </div>
+      </div>
+
+
+      <div class="col-md-4">
+        <div class="stylist-card">
+          <img src="Makeup.jpg" alt="Stylist 3">
+          <h5 class="card-title">festus mbah</h5>
+          <p><strong>Specialties:</strong> Hair Styling, Hair Treatment</p>
+          <p><strong>Distance:</strong> 3.5 miles away</p>
+          <a href="#" class="btn btn-primary">View Profile</a>
+        </div>
+      </div>
+
+
+
+      <div class="col-md-4">
+        <div class="stylist-card">
+          <img src="mens.jpg" alt="Stylist 3">
+          <h5 class="card-title">festus mbah</h5>
+          <p><strong>Specialties:</strong> Hair Styling, Hair Treatment</p>
+          <p><strong>Distance:</strong> 3.5 miles away</p>
+          <a href="#" class="btn btn-primary">View Profile</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+ 
+
+  
+    <!-- Client Sign Up Modal -->
+    <div class="modal fade" id="signupModalClient" tabindex="-1" aria-labelledby="signupModalClientLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="signupModalClientLabel">Sign Up as a Client</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="mb-3">
+                            <label for="clientName" class="form-label">Full Name</label>
+                            <input type="text" class="form-control" id="clientName" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="clientEmail" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="clientEmail" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="clientPhone" class="form-label">Phone Number</label>
+                            <input type="tel" class="form-control" id="clientPhone" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="clientPassword" class="form-label">Password</label>
+                            <input type="password" class="form-control" id="clientPassword" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Sign Up</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Stylist Sign Up Modal -->
+    <div class="modal fade" id="signupModalStylist" tabindex="-1" aria-labelledby="signupModalStylistLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="signupModalStylistLabel">Sign Up as a Stylist</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="mb-3">
+                            <label for="stylistName" class="form-label">Full Name</label>
+                            <input type="text" class="form-control" id="stylistName" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="stylistEmail" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="stylistEmail" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="stylistPhone" class="form-label">Phone Number</label>
+                            <input type="tel" class="form-control" id="stylistPhone" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="stylistSpecialty" class="form-label">Specialty (e.g. Hair, Makeup)</label>
+                            <input type="text" class="form-control" id="stylistSpecialty" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="stylistPassword" class="form-label">Password</label>
+                            <input type="password" class="form-control" id="stylistPassword" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Sign Up</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <section id="features" class="features-section text-center">
+        <div class="container">
+            <h2>Why Choose Us?</h2>
+            <div class="row g-4">
+                <div class="col-lg-4 col-md-6">
+                    <div class="feature-card">
+                        <i class="bi bi-calendar-check" style="font-size: 3rem; color: #7b4d77;"></i>
+                        <h3>Instant Booking</h3>
+                        <p>Book a stylist anytime, anywhere with real-time availability and instant confirmation.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="feature-card">
+                        <i class="bi bi-geo-alt" style="font-size: 3rem; color: #7b4d77;"></i>
+                        <h3>Location-Based Service</h3>
+                        <p>Find the best stylists near you and get personalized service right at your doorstep.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="feature-card">
+                        <i class="bi bi-credit-card" style="font-size: 3rem; color: #7b4d77;"></i>
+                        <h3>Secure Payments</h3>
+                        <p>Pay seamlessly with our secure, integrated payment gateway and track your earnings as a stylist.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+     <!-- Services Section -->
+    <section id="services" class="services-section text-center">
+        <div class="container">
+            <h2>Our Services</h2>
+            <div class="row g-4">
+                <div class="col-lg-3 col-md-6">
+                    <div class="service-card">
+                        <i class="bi bi-scissors" style="font-size: 3rem; color: #7b4d77;"></i>
+                        <h4>Haircuts</h4>
+                        <p>Trims, cuts, and styles from the best professionals in the industry.</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="service-card">
+                        <i class="bi bi-brush" style="font-size: 3rem; color: #7b4d77;"></i>
+                        <h4>Makeup</h4>
+                        <p>Get your makeup done for special occasions or day-to-day beauty needs.</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="service-card">
+                        <i class="bi bi-hand-thumbs-up" style="font-size: 3rem; color: #7b4d77;"></i>
+                        <h4>Manicures & Pedicures</h4>
+                        <p>Professional nail care for a fresh look that lasts.</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="service-card">
+                        <i class="bi bi-droplet" style="font-size: 3rem; color: #7b4d77;"></i>
+                        <h4>Hair Color</h4>
+                        <p>Highlights, lowlights, or a complete color change to refresh your look.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonial Section -->
+    <section class="testimonial-section text-center">
+        <div class="container">
+            <h2>What Our Clients Say</h2>
+            <div class="row g-4">
+                <div class="col-lg-4">
+                    <div class="testimonial-card">
+                        <p>"I had an amazing experience! The stylist was professional, on time, and gave me exactly the look I wanted for my event. Highly recommend!"</p>
+                        <h5>– Emily Smith</h5>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="testimonial-card">
+                        <p>"Booking was a breeze, and the results were fantastic. I'm definitely going to use this service again!"</p>
+                        <h5>– John Doe</h5>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="testimonial-card">
+                        <p>"This is the best on-demand beauty service out there. Convenient, professional, and affordable!"</p>
+                        <h5>– Sarah Lee</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="pricing-section text-center">
+        <div class="container">
+            <h2>Our Pricing Packages</h2>
+            <div class="row g-4">
+                <div class="col-lg-4">
+                    <div class="pricing-card">
+                        <h3>Basic</h3>
+                        <p>$50</p>
+                        <ul class="list-unstyled">
+                            <li>Standard haircut</li>
+                            <li>Simple makeup look</li>
+                            <li>Basic manicure</li>
+                        </ul>
+                        <a href="#" class="btn btn-primary">Book Now</a>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="pricing-card">
+                        <h3>Premium</h3>
+                        <p>$100</p>
+                        <ul class="list-unstyled">
+                            <li>Advanced hairstyle</li>
+                            <li>Full makeup look</li>
+                            <li>Gel manicure</li>
+                        </ul>
+                        <a href="#" class="btn btn-primary">Book Now</a>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="pricing-card">
+                        <h3>Luxury</h3>
+                        <p>$200</p>
+                        <ul class="list-unstyled">
+                            <li>Full bridal package</li>
+                            <li>Special event makeup</li>
+                            <li>Deluxe spa manicure</li>
+                        </ul>
+                        <a href="#" class="btn btn-primary">Book Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section text-center">
+        <div class="container">
+            <h2>Frequently Asked Questions</h2>
+            <div class="row">
+                <div class="col-lg-6 faq-item">
+                    <h5>How do I book a service?</h5>
+                    <p>Simply sign up, choose your preferred service and stylist, and book directly through the app or website.</p>
+                </div>
+                <div class="col-lg-6 faq-item">
+                    <h5>What payment methods do you accept?</h5>
+                    <p>We accept all major credit cards, PayPal, and digital wallets for a seamless and secure payment experience.</p>
+                </div>
+                <div class="col-lg-6 faq-item">
+                    <h5>Can I reschedule or cancel my appointment?</h5>
+                    <p>Yes, you can reschedule or cancel up to 24 hours before the appointment. Check our policy for more details.</p>
+                </div>
+                <div class="col-lg-6 faq-item">
+                    <h5>How do I contact customer support?</h5>
+                    <p>You can reach our customer support team 24/7 via chat or email for any questions or issues.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stylist Onboarding Section -->
+    <section class="onboarding-section text-center">
+        <div class="container">
+            <h2>Become a Stylist</h2>
+            <div class="row g-4">
+                <div class="col-lg-4">
+                    <div class="onboarding-card">
+                        <i class="bi bi-person-plus" style="font-size: 2rem;"></i>
+                        <h3>Sign Up</h3>
+                        <p>Create an account, upload your portfolio, and list your services.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="onboarding-card">
+                        <i class="bi bi-calendar-check" style="font-size: 2rem;"></i>
+                        <h3>Set Your Schedule</h3>
+                        <p>Manage your availability and accept bookings based on your schedule.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="onboarding-card">
+                        <i class="bi bi-cash" style="font-size: 2rem;"></i>
+                        <h3>Earn Money</h3>
+                        <p>Provide excellent services and get paid through our secure platform.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Section -->
+    <section class="blog-section text-center">
+        <div class="container">
+            <h2>Latest Articles</h2>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="blog-card">
+                        <img src="https://via.placeholder.com/350x250" alt="Blog Post" class="img-fluid">
+                        <h5>5 Tips for Maintaining Healthy Hair</h5>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="blog-card">
+                        <img src="https://via.placeholder.com/350x250" alt="Blog Post" class="img-fluid">
+                        <h5>How to Choose the Perfect Nail Color</h5>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="blog-card">
+                        <img src="https://via.placeholder.com/350x250" alt="Blog Post" class="img-fluid">
+                        <h5>Makeup Trends to Watch in 2025</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+
+
+    <script>
+    // Example GPS functionality
+    document.getElementById('enableGpsBtn').addEventListener('click', function() {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition, showError);
+      } else {
+        alert("Geolocation is not supported by this browser.");
+      }
+    });
+
+    function showPosition(position) {
+      const lat = position.coords.latitude;
+      const long = position.coords.longitude;
+      // Implement logic to find nearby stylists based on lat/long
+      alert("Latitude: " + lat + "\nLongitude: " + long);
+    }
+
+    function showError(error) {
+      switch(error.code) {
+        case error.PERMISSION_DENIED:
+          alert("User denied the request for Geolocation.");
+          break;
+        case error.POSITION_UNAVAILABLE:
+          alert("Location information is unavailable.");
+          break;
+        case error.TIMEOUT:
+          alert("The request to get user location timed out.");
+          break;
+        case error.UNKNOWN_ERROR:
+          alert("An unknown error occurred.");
+          break;
+      }
+    }
+
+    // Example click event for finding stylists
+    document.getElementById('findStylistsBtn').addEventListener('click', function() {
+      const location = document.getElementById('locationInput').value;
+      if (location) {
+        // Implement logic to find nearby stylists based on the input location
+        alert("Searching for stylists near: " + location);
+      } else {
+        alert("Please enter a location.");
+      }
+    });
+  </script>
+
+</body>
+</html>
